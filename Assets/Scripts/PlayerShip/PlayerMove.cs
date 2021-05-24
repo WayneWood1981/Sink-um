@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
 
     Camera cam;
 
-    
+    [SerializeField] GameObject canvasGameObject;
 
     public float movementSpeed;
 
@@ -18,11 +19,13 @@ public class PlayerMove : MonoBehaviour
 
     private Quaternion startRotation;
 
+    public Transform miniMapTransform;
 
     public float RotationSpeed;
 
     private Quaternion lookRotation;
     private Vector3 direction;
+    private bool canvasToggled;
 
     Vector3 target;
 
@@ -42,6 +45,8 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
 
+        miniMapTransform.localPosition = new Vector3(0, 3200, 0);
+
         
 
         if (Input.GetMouseButton(0))
@@ -58,11 +63,9 @@ public class PlayerMove : MonoBehaviour
             
             navMesh.SetDestination(hit.point);
 
-            
-            
-            
-        }
-      if(target != Vector3.zero)
+         }
+
+        if(target != Vector3.zero)
         {
             distance = Vector3.Distance(transform.position, target);
         }
@@ -82,6 +85,24 @@ public class PlayerMove : MonoBehaviour
         if (!distanceReached)
         {
             RotateShip();
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+
+            if (!canvasToggled)
+            {
+                canvasGameObject.SetActive(true);
+                canvasToggled = true;
+                
+            }
+            else
+            {
+                canvasGameObject.SetActive(false);
+                canvasToggled = false;
+            }
+
+            
         }
 
         

@@ -10,7 +10,7 @@ public class CannonBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -18,7 +18,7 @@ public class CannonBall : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Health>().currentHealth -= damage;
-
+            collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             gameObject.SetActive(false);
             Destroy(gameObject, 2);
         }

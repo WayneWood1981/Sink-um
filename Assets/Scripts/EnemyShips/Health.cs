@@ -17,13 +17,10 @@ public class Health : MonoBehaviour
     public float maxHealth = 100;
     public float currentHealth;
 
-    private Quaternion lookRotation;
-    private Vector3 direction;
+    
     public float radius = 5.0F;
     public float power = 10.0F;
-    private float RotationSpeed;
-    private float movementSpeed;
-
+    
     private bool isDead;
     // Start is called before the first frame update
     void Start()
@@ -73,13 +70,14 @@ public class Health : MonoBehaviour
         foreach (Transform child in destructibles.transform)
         {
             Vector3 explosionPos = child.position;
-            Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
-            rb.mass = 100f;
+            
+            
+            
             SphereCollider sc = child.gameObject.AddComponent<SphereCollider>();
-
-            
-
-            
+            sc.radius = 3;
+            //rb.detectCollisions = false;
         }
     }
+
+    
 }

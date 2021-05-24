@@ -7,14 +7,15 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
 
-   
+
     public List<Transform> targets = new List<Transform>();
+    //public Transform[] targets;
     public Transform shipTarget;
     public Transform circlingTarget;
 
     public int shipSize;
-    
-    
+
+    public Transform miniMap;
 
     public float movementSpeed;
     
@@ -33,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
     private Quaternion lookRotation;
     private Vector3 direction;
 
-
+    private Vector3 startingPos;
 
     
     private bool distanceToShipToBeginCircling;
@@ -48,6 +49,9 @@ public class EnemyMovement : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         startRotation = transform.rotation;
         health = GetComponent<Health>();
+
+        PopulateTheListWithTargets();
+        startingPos = this.transform.position;
 
     }
 
@@ -99,7 +103,40 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
-    
+    void PopulateTheListWithTargets()
+    {
+        Transform a = GameObject.Find("EnemyTarget1").transform;
+        Transform b = GameObject.Find("EnemyTarget2").transform;
+        Transform c = GameObject.Find("EnemyTarget3").transform;
+        Transform d = GameObject.Find("EnemyTarget4").transform;
+        Transform e = GameObject.Find("EnemyTarget5").transform;
+        Transform f = GameObject.Find("EnemyTarget6").transform;
+        Transform g = GameObject.Find("EnemyTarget7").transform;
+        Transform h = GameObject.Find("EnemyTarget8").transform;
+
+        
+
+        targets.Add(a);
+        targets.Add(b);
+        targets.Add(c);
+        targets.Add(d);
+        targets.Add(e);
+        targets.Add(f);
+        targets.Add(g);
+        targets.Add(h);
+
+        miniMap.localPosition = new Vector3(0, 3200, 0);
+
+
+        // Cant get this to work!!
+        /*for (int i = 0; i < 8; i++)
+        {
+            GameObject target = GameObject.Find("EnemyTarget" + i);
+
+            Debug.Log(target.name);
+            targets.Add(target.transform);
+        }*/
+    }
 
     private void getTargetDistances(List<Transform> possTargets)
     {

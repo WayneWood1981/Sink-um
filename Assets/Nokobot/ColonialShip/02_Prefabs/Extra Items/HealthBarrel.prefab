@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2171324637655025647}
   - component: {fileID: 1333903636}
   m_Layer: 0
-  m_Name: Barrel_Small
-  m_TagString: Untagged
+  m_Name: HealthBarrel
+  m_TagString: HealthBarrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

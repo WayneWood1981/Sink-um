@@ -13,8 +13,9 @@ public class PlayerMove : MonoBehaviour
 
     public float movementSpeed;
 
-    NavMeshAgent navMesh;
-
+    NavMeshAgent navMeshAgent;
+    NavMeshPath path;
+    
     public float speed = 1.0f;
 
     private Quaternion startRotation;
@@ -36,10 +37,13 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        navMesh = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         startRotation = transform.rotation;
 
     }
+
+
+    
     
     // Update is called once per frame
     void Update()
@@ -48,10 +52,11 @@ public class PlayerMove : MonoBehaviour
         miniMapTransform.localPosition = new Vector3(0, 3200, 0);
 
         
+        
 
         if (Input.GetMouseButton(0))
         {
-            navMesh.speed = 0.75f;
+            navMeshAgent.speed = 0.75f;
             distanceReached = false;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -61,9 +66,12 @@ public class PlayerMove : MonoBehaviour
             target = hit.point;
 
             
-            navMesh.SetDestination(hit.point);
+            //navMeshAgent.SetDestination(hit.point);
 
-         }
+            
+            
+
+    }
 
         if(target != Vector3.zero)
         {
@@ -72,19 +80,47 @@ public class PlayerMove : MonoBehaviour
         else
         {
             float f = Mathf.PingPong(Time.time, 3) - 1.5f;
-            transform.rotation = startRotation * Quaternion.AngleAxis(f, Vector3.forward);
+
+            //transform.rotation = startRotation * Quaternion.AngleAxis(f, Vector3.forward);
+        }
+
+        /*if (distance > 0.1)
+        {
+            direction = (target - transform.position).normalized;
+            lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * RotationSpeed);
+            Vector3 movement = transform.forward * Time.deltaTime * speed;
+            navMeshAgent.Move(movement);
+        }*/
+
+        if(target.x < float.PositiveInfinity)
+        {
+            Vector3 dir = target - transform.position;
+            var newDir = Vector3.RotateTowards(transform.forward, dir, 50 * Time.deltaTime, 0.0f);
+            var newRot = Quaternion.LookRotation(newDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime * 2f);
+
+            if (distance > navMeshAgent.radius + 0.1f)
+            {
+                Vector3 movement = transform.forward * Time.deltaTime * 2f;
+                navMeshAgent.Move(movement);
+            }
+            else
+            {
+
+            }
         }
         
         if (distance <= 1)
         {
-            navMesh.speed = 0.0f;
+            
             distanceReached = true;
         }
 
         
         if (!distanceReached)
         {
-            RotateShip();
+            //RotateShip();
         }
 
         if (Input.GetKeyDown(KeyCode.M))

@@ -25,8 +25,11 @@ public class CollectingResources : MonoBehaviour
     public Slider goldSlider;
     public Slider healthSlider;
     public Slider NotorietySlider;
-    
 
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
         playersMaxGold = goldSlider.maxValue;
@@ -47,7 +50,7 @@ public class CollectingResources : MonoBehaviour
         healthText.text = Mathf.RoundToInt(playersHealth).ToString();
 
 
-        playersNotoriety = playersGold / 10f; // make it 100 for the game
+        playersNotoriety = playersGold / 1f; // make it 100 for the game
 
 
         cannonBallText.text = playerscannonBalls.ToString();

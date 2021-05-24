@@ -6,6 +6,7 @@ public class EnemyRightFiring : MonoBehaviour
 {
     [SerializeField] Transform[] RightSideCannons;
 
+    Health health;
 
     public Rigidbody cannonBall;
 
@@ -26,6 +27,7 @@ public class EnemyRightFiring : MonoBehaviour
         cannonCoolDown = 1.5f;
         currentTime = 0;
         allowedToFire = true;
+        health = GetComponentInParent<Health>();
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class EnemyRightFiring : MonoBehaviour
 
     private void Fire()
     {
-        if (allowedToFire)
+        if (allowedToFire && health.isDead == false)
         {
             rightSideCurrent++;
             if (rightSideCurrent > 2)

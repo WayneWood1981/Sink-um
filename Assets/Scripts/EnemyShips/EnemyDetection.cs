@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemyDetection : MonoBehaviour
 {
-    private EnemyMovement enemyMovement;
+    private EnemyNav enemyMovement;
 
     private void Start()
     {
-        enemyMovement = GetComponent<EnemyMovement>();
+        enemyMovement = GetComponent<EnemyNav>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-           
 
-            enemyMovement.shipTarget = other.transform;
+            enemyMovement.shipTarget = enemyMovement.getTargetDistances(enemyMovement.targets);
+            //enemyMovement.shipTarget = other.transform;
         }
     }
 }

@@ -8,10 +8,10 @@ public class EnemySpawning : MonoBehaviour
 
     [SerializeField] GameObject player;
 
-    public GameObject EnemyLVL1;
-    public GameObject EnemyLVL2;
-    public GameObject EnemyLVL3;
-    public GameObject EnemyLVL4;
+    public Transform EnemyLVL1;
+    public Transform EnemyLVL2;
+    public Transform EnemyLVL3;
+    public Transform EnemyLVL4;
 
     public Transform[] spawnPoints;
 
@@ -43,9 +43,9 @@ public class EnemySpawning : MonoBehaviour
             {
                 for (int i = 0; i < spawnPoints.Length; i++)
                 {
-                    GameObject newEnemy = Instantiate(EnemyLVL1, spawnPoints[i]);
+                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
                     
-                    newEnemy.GetComponent<EnemyMovement>().shipTarget = player.transform;
+                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
             }
@@ -55,8 +55,8 @@ public class EnemySpawning : MonoBehaviour
             {
                 for (int i = 0; i < spawnPoints.Length; i++)
                 {
-                    GameObject newEnemy = Instantiate(EnemyLVL2, spawnPoints[i]);
-                    newEnemy.GetComponent<EnemyMovement>().shipTarget = player.transform;
+                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
+                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
 
                 }
                 releaseTheEnemies = true;
@@ -67,8 +67,8 @@ public class EnemySpawning : MonoBehaviour
             {
                 for (int i = 0; i < spawnPoints.Length; i++)
                 {
-                    GameObject newEnemy = Instantiate(EnemyLVL3, spawnPoints[i]);
-                    newEnemy.GetComponent<EnemyMovement>().shipTarget = player.transform;
+                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
+                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
             }
@@ -79,8 +79,8 @@ public class EnemySpawning : MonoBehaviour
             {
                 for (int i = 0; i < spawnPoints.Length; i++)
                 {
-                    GameObject newEnemy = Instantiate(EnemyLVL4, spawnPoints[i]);
-                    newEnemy.GetComponent<EnemyMovement>().shipTarget = player.transform;
+                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
+                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
             }

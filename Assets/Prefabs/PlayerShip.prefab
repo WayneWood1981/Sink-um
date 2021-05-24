@@ -1,5 +1,95 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &811408948995090412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 467626111477912595}
+  m_Layer: 2
+  m_Name: GoldParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &467626111477912595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811408948995090412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.7, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8668683331155358010}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5005529844928227702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7129347084890507749}
+  m_Layer: 2
+  m_Name: Health Particle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7129347084890507749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005529844928227702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.7, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8668683331155358010}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7449118295844051868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2272251253560772812}
+  m_Layer: 2
+  m_Name: CannonBallParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2272251253560772812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449118295844051868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.7, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8668683331155358010}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8671745703416480890
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,13 +911,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8668683331155358010}
   - component: {fileID: 8673174672402252577}
-  - component: {fileID: 8673174672402252582}
   - component: {fileID: 8672097152828462027}
-  - component: {fileID: 8672097152828462024}
   - component: {fileID: 8672097152828462025}
-  - component: {fileID: 8672097152828462031}
   - component: {fileID: 8672097152828462030}
   - component: {fileID: 8672097152828462028}
+  - component: {fileID: 1539993923}
+  - component: {fileID: 1539993925}
+  - component: {fileID: 1539993921}
   m_Layer: 2
   m_Name: PlayerShip
   m_TagString: Player
@@ -843,7 +933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8672097152828462026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.7, y: 0, z: -46.2}
+  m_LocalPosition: {x: 0, y: 43, z: 0}
   m_LocalScale: {x: 0.04362506, y: 0.04362506, z: 0.04362506}
   m_Children:
   - {fileID: 8673174670688104712}
@@ -863,6 +953,9 @@ Transform:
   - {fileID: 8673174670576984139}
   - {fileID: 8673174671923952172}
   - {fileID: 8673174671382308287}
+  - {fileID: 7129347084890507749}
+  - {fileID: 2272251253560772812}
+  - {fileID: 467626111477912595}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -876,7 +969,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.75
+  m_Speed: 0
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 5
@@ -888,23 +981,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8673174672402252582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672097152828462026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3e380aac71c4a8e8a3f3a83bb13c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGameObject: {fileID: 0}
-  movementSpeed: 1
-  speed: 1
-  miniMapTransform: {fileID: 8673174671382308287}
-  RotationSpeed: 0.25
 --- !u!114 &8672097152828462027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,40 +1001,11 @@ MonoBehaviour:
   - {fileID: 8673174671665930696}
   - {fileID: 8673174671204439775}
   - {fileID: 8673174671689123930}
-  playersResources: {fileID: 0}
+  playersResources: {fileID: 8672097152828462030}
   cannonBall: {fileID: 8319898899511258110, guid: 22863bb9a6c7e43438078ff1ba2db427, type: 3}
   impulseForce: 800
   cannonCoolDown: 2
---- !u!54 &8672097152828462024
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672097152828462026}
-  serializedVersion: 2
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
 --- !u!135 &8672097152828462025
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672097152828462026}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &8672097152828462031
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -969,8 +1016,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 50
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 38.05
+  m_Center: {x: 0, y: 7.5306487, z: 0}
 --- !u!114 &8672097152828462030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1062,49 @@ MonoBehaviour:
   slider: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
+--- !u!114 &1539993923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672097152828462026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afca2ff49f5c6467aab5a15b174b667a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGameObject: {fileID: 0}
+  SPEEDISHERE: 4
+--- !u!54 &1539993925
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672097152828462026}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1539993921
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672097152828462026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 53.9
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8672111510798139576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,7 +2618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8673174671382308286}
   m_LocalRotation: {x: 0.5121799, y: -0.49999103, z: 0.49948055, w: 0.4880572}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 10, z: -0}
   m_LocalScale: {x: 161.0455, y: 161.0455, z: 161.04552}
   m_Children: []
   m_Father: {fileID: 8668683331155358010}

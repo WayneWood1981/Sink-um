@@ -57,7 +57,7 @@ public class PlayersHealth : MonoBehaviour
             SphereCollider sc = child.gameObject.AddComponent<SphereCollider>();
             sc.radius = 5;
 
-
+            Destroy(child.gameObject, 2);
 
 
         }

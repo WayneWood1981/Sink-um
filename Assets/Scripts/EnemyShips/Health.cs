@@ -10,6 +10,9 @@ public class Health : MonoBehaviour
     [SerializeField] Transform destructibles;
     [SerializeField] Transform boat;
 
+    public GameObject fireBack;
+    public GameObject fireFront;
+
     NavMeshAgent navmesh;
     public CreateLootFromShip lootFromShip;
     EnemyMovement enemyMovement;
@@ -33,6 +36,9 @@ public class Health : MonoBehaviour
         navmesh = GetComponent<NavMeshAgent>();
         lootFromShip = FindObjectOfType<CreateLootFromShip>();
         enemyMovement = GetComponent<EnemyMovement>();
+
+        fireBack.SetActive(false);
+        fireFront.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,7 +69,20 @@ public class Health : MonoBehaviour
                
             
         }
-        
+        else if (currentHealth <= 70)
+        {
+            fireBack.SetActive(true);
+        }
+        else if (currentHealth <= 30)
+        {
+            fireFront.SetActive(true);
+        }
+        else if (currentHealth > 70)
+        {
+            fireFront.SetActive(false);
+            fireFront.SetActive(false);
+        }
+
     }
 
     private void Die()

@@ -11,7 +11,11 @@ public class PlayersHealth : MonoBehaviour
     [SerializeField] Transform destructibles;
     [SerializeField] Transform boat;
 
+    public GameObject fireBack;
+    public GameObject fireFront;
+
     public Slider slider;
+    public Text healthCount;
 
     NavMeshAgent navmesh;
 
@@ -26,13 +30,14 @@ public class PlayersHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         navmesh = GetComponent<NavMeshAgent>();
-        
+        fireBack.SetActive(false);
+        fireFront.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = currentHealth;
+        
 
         if (currentHealth <= 0)
         {
@@ -43,7 +48,26 @@ public class PlayersHealth : MonoBehaviour
                 navmesh.isStopped = true;
                 Die();
             }
+        }else if (currentHealth <= 70)
+        {
+            fireBack.SetActive(true);
+        }else if (currentHealth <= 30)
+        {
+            fireFront.SetActive(true);
+        }else if (currentHealth > 70)
+        {
+            fireFront.SetActive(false);
+            fireFront.SetActive(false);
         }
+        {
+
+        }
+    }
+
+    private void LateUpdate()
+    {
+        slider.value = currentHealth;
+        healthCount.text = currentHealth.ToString();
     }
 
     private void Die()

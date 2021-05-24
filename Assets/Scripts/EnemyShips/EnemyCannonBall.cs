@@ -6,6 +6,11 @@ public class EnemyCannonBall : MonoBehaviour
 {
     public float damage;
 
+    public GameObject hitSmash;
+
+    private ContactPoint collisionPoint;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,23 @@ public class EnemyCannonBall : MonoBehaviour
 
             gameObject.SetActive(false);
             Destroy(gameObject, 2);
+
+            collisionPoint = collision.GetContact(0);
+
+
+
+            GameObject temporarySplatMarkHandler;
+
+            temporarySplatMarkHandler = Instantiate(hitSmash, collisionPoint.point, Quaternion.LookRotation(collisionPoint.normal)) as GameObject;
+
+
+            temporarySplatMarkHandler.transform.Rotate(Vector3.right / 70);
+            temporarySplatMarkHandler.transform.Rotate(Vector3.forward * 90);
+            temporarySplatMarkHandler.transform.Translate(Vector3.up * 0.005f);
+        }
+        if (collision.transform.tag == "Enemy")
+        {
+            gameObject.GetComponent<Rigidbody>().detectCollisions = false;
         }
     }
 }

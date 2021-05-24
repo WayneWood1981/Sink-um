@@ -20,6 +20,15 @@ public class CannonBall : MonoBehaviour
             collision.gameObject.GetComponent<Health>().currentHealth -= damage;
             collision.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             gameObject.SetActive(false);
+
+            //Create the hit point
+
+            GameObject woodGO = collision.transform.Find("WoodImpacts").gameObject;
+
+            ParticleSystem theHit = GetComponentInChildren<ParticleSystem>();
+
+            theHit.Play();
+            
             Destroy(gameObject, 2);
         }
     }

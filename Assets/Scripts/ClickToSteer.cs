@@ -10,6 +10,11 @@ public class ClickToSteer : MonoBehaviour
 
     [SerializeField] GameObject canvasGameObject;
 
+    AudioSource audioSource;
+
+    public AudioClip mapOpen;
+    public AudioClip mapClose;
+
     public float SPEEDISHERE;
 
     NavMeshAgent m_Agent;
@@ -45,6 +50,8 @@ public class ClickToSteer : MonoBehaviour
         m_Agent = GetComponent<NavMeshAgent>();
         m_Agent.isStopped = true;
         m_Path = new NavMeshPath();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -58,12 +65,14 @@ public class ClickToSteer : MonoBehaviour
             if (!canvasToggled)
             {
                 canvasGameObject.SetActive(true);
+                audioSource.PlayOneShot(mapOpen, 0.8f);
                 canvasToggled = true;
 
             }
             else
             {
                 canvasGameObject.SetActive(false);
+                audioSource.PlayOneShot(mapClose, 0.8f);
                 canvasToggled = false;
             }
 

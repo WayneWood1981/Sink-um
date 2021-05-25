@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -10,11 +11,16 @@ public class Health : MonoBehaviour
     [SerializeField] Transform destructibles;
     [SerializeField] Transform boat;
 
+    public Slider healthSlider;
+
+    public AudioClip death;
+    private bool playDeath;
+
     public GameObject fireBack;
     public GameObject fireFront;
 
     NavMeshAgent navmesh;
-    public CreateLootFromShip lootFromShip;
+    AudioSource audioSource;
     EnemyMovement enemyMovement;
 
     public float maxHealth = 100;
@@ -23,7 +29,7 @@ public class Health : MonoBehaviour
 
     private bool droppingLoot;
 
-
+    public CreateLootFromShip lootFromShip;
 
     public float radius = 5.0F;
     public float power = 10.0F;
@@ -36,6 +42,9 @@ public class Health : MonoBehaviour
         navmesh = GetComponent<NavMeshAgent>();
         lootFromShip = FindObjectOfType<CreateLootFromShip>();
         enemyMovement = GetComponent<EnemyMovement>();
+        audioSource = GetComponent<AudioSource>();
+
+        healthSlider.maxValue = maxHealth;
 
         fireBack.SetActive(false);
         fireFront.SetActive(false);
@@ -44,12 +53,20 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        healthSlider.value = currentHealth;
+
         if (currentHealth <= 0)
         {
             if (isDead == false)
             {
                 
                 Die();
+                if (!playDeath)
+                {
+                    audioSource.PlayOneShot(death, 0.2f);
+                    playDeath = true;
+                }
             }
 
             Rigidbody rb = boat.GetComponent<Rigidbody>();
@@ -69,21 +86,26 @@ public class Health : MonoBehaviour
                
             
         }
-        else if (currentHealth <= 70)
+        else if (currentHealth <= currentHealth / 100 * 70)
         {
             fireBack.SetActive(true);
         }
-        else if (currentHealth <= 30)
+        else if (currentHealth <= currentHealth / 100 * 30)
         {
             fireFront.SetActive(true);
         }
-        else if (currentHealth > 70)
+        else if (currentHealth > currentHealth / 100 * 70)
         {
             fireFront.SetActive(false);
             fireFront.SetActive(false);
         }
 
     }
+
+    
+
+    
+
 
     private void Die()
     {

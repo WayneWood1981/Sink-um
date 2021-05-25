@@ -11,6 +11,7 @@ TagManager:
   - HealthBarrel
   - Rum
   - Island
+  - Sea
   layers:
   - Default
   - TransparentFX

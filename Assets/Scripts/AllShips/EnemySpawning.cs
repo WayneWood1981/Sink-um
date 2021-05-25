@@ -12,6 +12,7 @@ public class EnemySpawning : MonoBehaviour
     public Transform EnemyLVL2;
     public Transform EnemyLVL3;
     public Transform EnemyLVL4;
+    public Transform Boss;
 
     public Transform[] spawnPoints;
 
@@ -41,7 +42,7 @@ public class EnemySpawning : MonoBehaviour
         {
             if (releaseTheEnemies == false)
             {
-                for (int i = 0; i < spawnPoints.Length; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
                     
@@ -53,9 +54,9 @@ public class EnemySpawning : MonoBehaviour
         {
             if (releaseTheEnemies == false)
             {
-                for (int i = 0; i < spawnPoints.Length; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
+                    Transform newEnemy = Instantiate(EnemyLVL2, spawnPoints[i].position, spawnPoints[i].rotation);
                     newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
 
                 }
@@ -65,9 +66,9 @@ public class EnemySpawning : MonoBehaviour
         {
             if (releaseTheEnemies == false)
             {
-                for (int i = 0; i < spawnPoints.Length; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
+                    Transform newEnemy = Instantiate(EnemyLVL3, spawnPoints[i].position, spawnPoints[i].rotation);
                     newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
@@ -77,9 +78,15 @@ public class EnemySpawning : MonoBehaviour
         {
             if (releaseTheEnemies == false)
             {
-                for (int i = 0; i < spawnPoints.Length; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
+                    Transform newEnemy = Instantiate(EnemyLVL4, spawnPoints[i].position, spawnPoints[i].rotation);
+                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
+                }
+
+                for (int i = 0; i < 1; i++)
+                {
+                    Transform newEnemy = Instantiate(Boss, spawnPoints[i].position, spawnPoints[i].rotation);
                     newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;

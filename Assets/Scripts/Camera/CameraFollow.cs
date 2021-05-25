@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour
             if (!toggleZoom)
             {
                 toggleZoom = true;
-                offset = new Vector3(52,46, 22);
+                offset = new Vector3(52,46, -0.67f);
             }
             else
             {

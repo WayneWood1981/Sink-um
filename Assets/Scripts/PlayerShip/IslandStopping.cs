@@ -8,6 +8,13 @@ public class IslandStopping : MonoBehaviour
 {
     [SerializeField] ParticleSystem pS;
 
+    public AudioSource audioSource;
+    public AudioClip[] digginSounds;
+    public AudioClip chestOpen;
+    public AudioClip goldCoins;
+    private bool playDigging;
+    private bool playChestOpen;
+
     public CollectingResources playersCollection;
     
     public DiggingUpTresure digging;
@@ -33,8 +40,11 @@ public class IslandStopping : MonoBehaviour
         playersCollection = FindObjectOfType<CollectingResources>();
 
         pS = GetComponentInChildren<ParticleSystem>();
+        pS.Stop();
 
         digging = GetComponentInParent<DiggingUpTresure>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -47,41 +57,50 @@ public class IslandStopping : MonoBehaviour
                 {
                     islandsStashOfGold -= 1 * speedOfLooting * Time.deltaTime;
                     playersCollection.playersGold += 1 * speedOfLooting * Time.deltaTime;
-                    coinParticles = true;
+                    
                     digging.treasureChest.transform.position += new Vector3(0, 0.001f, 0);
                     float distance = digging.treasureChest.transform.position.y - digging.treasureChestStartingPos.y;
+
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.PlayOneShot(digginSounds[Random.Range(0, digginSounds.Length)], 0.3f);
+                    }
                     
                     if (islandsStashOfGold <= 0)
                     {
+                        if (!playChestOpen)
+                        {
+                            audioSource.PlayOneShot(chestOpen, 0.5f);
+                            audioSource.PlayOneShot(goldCoins, 0.25f);
+                            playChestOpen = true;
+                        }
+                        
+                        
+                        pS.Play();
+
+                        Invoke("StopPlayingPS", 5);
+                        
                         digging.treasureChest.SetActive(false);
                         digging.openTreasureChest.SetActive(true);
                     }
 
 
                 }
-                else
-                {
-                    coinParticles = false;
-                }
+                
 
             }
-            else
-            {
-                coinParticles = false;
-            }
+            
 
             
 
         }
 
-        if (coinParticles)
-        {
-            if (!pS.isPlaying) pS.Play();
-        }
-        else
-        {
-            if (pS.isPlaying) pS.Stop();
-        }
+        
+    }
+
+    void StopPlayingPS()
+    {
+        pS.Stop();
     }
 
 

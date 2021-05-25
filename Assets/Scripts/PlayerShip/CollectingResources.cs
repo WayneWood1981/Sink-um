@@ -6,9 +6,19 @@ using UnityEngine.UI;
 public class CollectingResources : MonoBehaviour
 {
 
+    AudioSource audioSource;
+
+    public AudioClip collectGoldChest;
+    public AudioClip collectHealth;
+    public AudioClip collectCannonBalls;
+
     public float playersGold;
     public float playersMaxGold;
     public Text goldText;
+
+    public int healthBarrelHealth;
+    public int goldBarrelGold;
+    public int cannonBallBarrelBall;
 
     public float playersHealth;
     public float playersMaxHealth = 100f;
@@ -28,11 +38,12 @@ public class CollectingResources : MonoBehaviour
 
     private void Awake()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
         playersMaxGold = goldSlider.maxValue;
+        playersMaxHealth = healthSlider.maxValue;
         playerscannonBalls = playersMaxBalls;
         cannonBallText.text = playersMaxBalls.ToString();
         playersHealth = playersMaxHealth;
@@ -47,10 +58,10 @@ public class CollectingResources : MonoBehaviour
         notorietyText.text = Mathf.RoundToInt(playersNotoriety).ToString();
 
         healthSlider.value = playersHealth;
-        healthText.text = Mathf.RoundToInt(playersHealth).ToString();
+        healthText.text = Mathf.RoundToInt(playersHealth).ToString() + "%";
 
 
-        playersNotoriety = playersGold / 1f; // make it 100 for the game
+        playersNotoriety = playersGold / 100f; // make it 100 for the game
 
 
         cannonBallText.text = playerscannonBalls.ToString();
@@ -70,6 +81,8 @@ public class CollectingResources : MonoBehaviour
             playersHealth = playersMaxHealth;
         }
     }
+
+    
     private void OnTriggerEnter(Collider other)
     {
 
@@ -77,24 +90,32 @@ public class CollectingResources : MonoBehaviour
 
         if (other.transform.tag == "Chest")
         {
-            playersGold += 1000f;
-            //play sound
-            other.gameObject.SetActive(false);
-            Destroy(other.gameObject, 2);
+            playersGold += goldBarrelGold;
+            
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
+            audioSource.PlayOneShot(collectGoldChest, 0.4f);
+            Destroy(other.gameObject, 5);
             
         }else if (other.transform.tag == "CannonBalls")
         {
-            playerscannonBalls += 5;
-            other.gameObject.SetActive(false);
-            Destroy(other.gameObject, 2);
+            playerscannonBalls += cannonBallBarrelBall;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
+            audioSource.PlayOneShot(collectCannonBalls, 0.4f);
+            Destroy(other.gameObject, 5);
             
         }
         else if (other.transform.tag == "HealthBarrel")
         {
-            playersHealth += 20f;
-            other.gameObject.SetActive(false);
-            Destroy(other.gameObject, 2);
+            playersHealth += healthBarrelHealth;
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            other.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
+            audioSource.PlayOneShot(collectHealth, 0.4f);
+            Destroy(other.gameObject, 5);
             
+
+
         }
         
     }

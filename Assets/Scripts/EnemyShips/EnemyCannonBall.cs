@@ -6,15 +6,35 @@ public class EnemyCannonBall : MonoBehaviour
 {
     public float damage;
 
-    public GameObject hitSmash;
+    public AudioClip[] splashes;
 
-    private ContactPoint collisionPoint;
+    public AudioClip[] boatHits;
+
+    public AudioClip[] cannonFire;
+
+    AudioSource audioSource;
+
+    MeshRenderer meshRenderer;
+
+    Rigidbody rb;
+
+    public GameObject splash;
 
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+
+        meshRenderer = GetComponent<MeshRenderer>();
+
+        rb = GetComponent<Rigidbody>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, 1);
+
+        audioSource.PlayOneShot(cannonFire[Random.Range(0, cannonFire.Length)], 0.1f);
     }
 
     private void Update()
@@ -28,25 +48,47 @@ public class EnemyCannonBall : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayersHealth>().currentHealth -= damage;
 
-            gameObject.SetActive(false);
-            Destroy(gameObject, 2);
+            meshRenderer.enabled = false;
 
-            collisionPoint = collision.GetContact(0);
+            rb.detectCollisions = false;
 
+            GameObject woodGO = collision.transform.Find("WoodImpacts").gameObject;
 
+            ParticleSystem theHit = woodGO.GetComponentInChildren<ParticleSystem>();
 
-            GameObject temporarySplatMarkHandler;
+            audioSource.PlayOneShot(boatHits[Random.Range(0, boatHits.Length)], 0.1f);
 
-            temporarySplatMarkHandler = Instantiate(hitSmash, collisionPoint.point, Quaternion.LookRotation(collisionPoint.normal)) as GameObject;
+            doEmit(theHit);
 
-
-            temporarySplatMarkHandler.transform.Rotate(Vector3.right / 70);
-            temporarySplatMarkHandler.transform.Rotate(Vector3.forward * 90);
-            temporarySplatMarkHandler.transform.Translate(Vector3.up * 0.005f);
         }
-        if (collision.transform.tag == "Enemy")
+        else if (collision.transform.tag == "Sea")
         {
-            gameObject.GetComponent<Rigidbody>().detectCollisions = false;
+            meshRenderer.enabled = false;
+
+            ContactPoint hitPoint = collision.GetContact(0);
+
+
+
+            GameObject splashMiss = Instantiate(splash, hitPoint.point, Quaternion.identity) as GameObject;
+
+            splashMiss.transform.Rotate(90.0f, 0f, 0f, Space.Self);
+
+
+            if (audioSource)
+            {
+                audioSource.volume = 20;
+                audioSource.PlayOneShot(splashes[Random.Range(0, splashes.Length)], 0.05f);
+            }
         }
+
+    }
+
+    void doEmit(ParticleSystem ps)
+    {
+        var emitParams = new ParticleSystem.EmitParams();
+        emitParams.startColor = Color.red;
+        emitParams.startSize = 0.2f;
+        ps.Emit(emitParams, 1);
+        ps.Play();
     }
 }

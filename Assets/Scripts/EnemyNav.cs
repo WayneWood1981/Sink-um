@@ -92,8 +92,8 @@ public class EnemyNav : MonoBehaviour
 
         if (pathIter >= m_Path.corners.Length)
         {
-            destination =
-                new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
+            if(!health.isDead)
+            destination = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
             enemAgent.isStopped = true;
             return;
         }

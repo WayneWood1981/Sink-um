@@ -12,6 +12,8 @@ TagManager:
   - Rum
   - Island
   - Sea
+  - ShipWreck
+  - Map
   layers:
   - Default
   - TransparentFX

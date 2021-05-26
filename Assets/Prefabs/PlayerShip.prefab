@@ -1136,11 +1136,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructibles: {fileID: 8673174670688104712}
   boat: {fileID: 8668683331155358010}
+  cam: {fileID: 0}
   fireBack: {fileID: 7449118295844051868}
   fireFront: {fileID: 811408948995090412}
+  playerSpawnPoint: {fileID: 0}
+  player: {fileID: 8668683331155358010}
+  fadeToBlackImage: {fileID: 0}
+  currentSprite: {fileID: 8673174671382308287}
+  shipWreckSprite: {fileID: 21300000, guid: eac51da25a7b24174a03412909fd5042, type: 3}
   slider: {fileID: 0}
   healthCount: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 10
   currentHealth: 0
 --- !u!114 &1539993923
 MonoBehaviour:
@@ -1154,7 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afca2ff49f5c6467aab5a15b174b667a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGameObject: {fileID: 0}
+  canvasGameObject: {fileID: 9072718047968785151, guid: b310428ca19f345648754d84807236ca, type: 3}
   mapOpen: {fileID: 8300000, guid: c8c02e23bd8fdaa44b68ba300d26a4aa, type: 3}
   mapClose: {fileID: 8300000, guid: eadfa25f6b899324eb7153cf8d0a2db8, type: 3}
   SPEEDISHERE: 4

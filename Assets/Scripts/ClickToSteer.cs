@@ -8,12 +8,14 @@ public class ClickToSteer : MonoBehaviour
 {
     
 
-    [SerializeField] GameObject canvasGameObject;
+    public GameObject canvasGameObject;
 
     AudioSource audioSource;
 
     public AudioClip mapOpen;
     public AudioClip mapClose;
+
+    private GameObject map;
 
     public float SPEEDISHERE;
 
@@ -45,14 +47,24 @@ public class ClickToSteer : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        
+        
+        
+    }
+
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
-        m_Agent.isStopped = true;
+       // m_Agent.isStopped = true;
         m_Path = new NavMeshPath();
-
+        
         audioSource = GetComponent<AudioSource>();
+        
     }
+
+
 
     void Update()
     {
@@ -64,15 +76,25 @@ public class ClickToSteer : MonoBehaviour
 
             if (!canvasToggled)
             {
-                canvasGameObject.SetActive(true);
-                audioSource.PlayOneShot(mapOpen, 0.8f);
+                if (!GameObject.Find("MapCanvasClone"))
+                {
+                    Instantiate(canvasGameObject);
+                }
+                else
+                {
+                    GameObject map = GameObject.Find("MapCanvasClone");
+                    map.SetActive(true);
+                }
+                
+                audioSource.PlayOneShot(mapOpen, 0.4f);
                 canvasToggled = true;
 
             }
             else
             {
-                canvasGameObject.SetActive(false);
-                audioSource.PlayOneShot(mapClose, 0.8f);
+                GameObject map = GameObject.FindGameObjectWithTag("Map");
+                map.SetActive(false);
+                audioSource.PlayOneShot(mapClose, 0.4f);
                 canvasToggled = false;
             }
 

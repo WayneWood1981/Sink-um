@@ -14,7 +14,10 @@ public class CollectingResources : MonoBehaviour
 
     public float playersGold;
     public float playersMaxGold;
+
+    
     public Text goldText;
+
 
     public int healthBarrelHealth;
     public int goldBarrelGold;
@@ -39,6 +42,23 @@ public class CollectingResources : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        GameObject gT = GameObject.Find("Gold Count");
+        GameObject hT = GameObject.Find("Health Count");
+        GameObject nT = GameObject.Find("Notoriety Count");
+        GameObject bT = GameObject.Find("Ball Count");
+        GameObject gS = GameObject.Find("Gold Slider");
+        GameObject hS = GameObject.Find("Health Slider");
+        GameObject nS = GameObject.Find("Notoriety Slider");
+        
+
+        goldText = gT.GetComponent<Text>();
+        healthText = hT.GetComponent<Text>();
+        notorietyText = nT.GetComponent<Text>();
+        cannonBallText = bT.GetComponent<Text>();
+        goldSlider = gS.GetComponent<Slider>();
+        healthSlider = hS.GetComponent<Slider>();
+        NotorietySlider = nS.GetComponent<Slider>();
+
     }
     private void Start()
     {
@@ -47,6 +67,12 @@ public class CollectingResources : MonoBehaviour
         playerscannonBalls = playersMaxBalls;
         cannonBallText.text = playersMaxBalls.ToString();
         playersHealth = playersMaxHealth;
+
+        // Create Player Instances
+
+        
+        
+
     }
 
     private void Update()

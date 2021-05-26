@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyDetection : MonoBehaviour
 {
-    private EnemyNav enemyMovement;
+    private EnemyChase enemyMovement;
 
     private void Start()
     {
-        enemyMovement = GetComponent<EnemyNav>();
+        enemyMovement = GetComponent<EnemyChase>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +17,7 @@ public class EnemyDetection : MonoBehaviour
         {
 
             enemyMovement.shipTarget = enemyMovement.getTargetDistances(enemyMovement.targets);
+            enemyMovement.isPatrolling = false;
             //enemyMovement.shipTarget = other.transform;
         }
     }

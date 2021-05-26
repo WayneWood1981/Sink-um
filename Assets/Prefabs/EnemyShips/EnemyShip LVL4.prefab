@@ -48339,9 +48339,9 @@ GameObject:
   - component: {fileID: 8470539612076981460}
   - component: {fileID: 8470539612076981461}
   - component: {fileID: 8470539612076981462}
-  - component: {fileID: 8470539612076981463}
   - component: {fileID: 8470539612076981416}
   - component: {fileID: 8470539612076981417}
+  - component: {fileID: 6235043787481307508}
   m_Layer: 2
   m_Name: EnemyShip LVL4
   m_TagString: Enemy
@@ -48479,23 +48479,6 @@ MonoBehaviour:
   radius: 2
   power: 5
   isDead: 0
---- !u!114 &8470539612076981463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8470539612076981418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a64081f30962e44078267f9d17badfe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SPEED: 6
-  targets: []
-  shipTarget: {fileID: 0}
-  currentTimer: 0
-  maxTimer: 3
 --- !u!82 &8470539612076981416
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48605,6 +48588,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapIcon: {fileID: 8470539611253555024}
+--- !u!114 &6235043787481307508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8470539612076981418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086474926f56f4dd08a639fd32264550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPEED: 5
+  targets: []
+  shipTarget: {fileID: 0}
+  currentTimer: 0
+  maxTimer: 3
 --- !u!1 &8470539612098686919
 GameObject:
   m_ObjectHideFlags: 0

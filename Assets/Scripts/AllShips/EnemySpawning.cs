@@ -22,13 +22,19 @@ public class EnemySpawning : MonoBehaviour
 
     private bool releaseTheEnemies;
 
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        playersResources = player.GetComponent<CollectingResources>();
-        
 
         
+        playersResources = FindObjectOfType<CollectingResources>();
+
+
     }
 
     // Update is called once per frame
@@ -46,7 +52,7 @@ public class EnemySpawning : MonoBehaviour
                 {
                     Transform newEnemy = Instantiate(EnemyLVL1, spawnPoints[i].position, spawnPoints[i].rotation);
                     
-                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
+                    newEnemy.GetComponent<EnemyChase>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
             }
@@ -57,7 +63,7 @@ public class EnemySpawning : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     Transform newEnemy = Instantiate(EnemyLVL2, spawnPoints[i].position, spawnPoints[i].rotation);
-                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
+                    newEnemy.GetComponent<EnemyChase>().shipTarget = player.transform;
 
                 }
                 releaseTheEnemies = true;
@@ -69,7 +75,7 @@ public class EnemySpawning : MonoBehaviour
                 for (int i = 0; i < 4; i++)
                 {
                     Transform newEnemy = Instantiate(EnemyLVL3, spawnPoints[i].position, spawnPoints[i].rotation);
-                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
+                    newEnemy.GetComponent<EnemyChase>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
             }
@@ -81,13 +87,13 @@ public class EnemySpawning : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     Transform newEnemy = Instantiate(EnemyLVL4, spawnPoints[i].position, spawnPoints[i].rotation);
-                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
+                    newEnemy.GetComponent<EnemyChase>().shipTarget = player.transform;
                 }
 
                 for (int i = 0; i < 1; i++)
                 {
                     Transform newEnemy = Instantiate(Boss, spawnPoints[i].position, spawnPoints[i].rotation);
-                    newEnemy.GetComponent<EnemyNav>().shipTarget = player.transform;
+                    newEnemy.GetComponent<EnemyChase>().shipTarget = player.transform;
                 }
                 releaseTheEnemies = true;
             }

@@ -12365,9 +12365,9 @@ GameObject:
   - component: {fileID: 3971767518256926388}
   - component: {fileID: 3971767518256926391}
   - component: {fileID: 3971767518256926390}
-  - component: {fileID: 3971767518256926385}
   - component: {fileID: 3971767518256926384}
   - component: {fileID: 3971767518256926387}
+  - component: {fileID: 1976560614515727292}
   m_Layer: 2
   m_Name: Boss
   m_TagString: Enemy
@@ -12505,23 +12505,6 @@ MonoBehaviour:
   radius: 2
   power: 5
   isDead: 0
---- !u!114 &3971767518256926385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3971767518256926386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a64081f30962e44078267f9d17badfe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SPEED: 7
-  targets: []
-  shipTarget: {fileID: 0}
-  currentTimer: 0
-  maxTimer: 3
 --- !u!82 &3971767518256926384
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12631,6 +12614,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapIcon: {fileID: 3971767518680819587}
+--- !u!114 &1976560614515727292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971767518256926386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086474926f56f4dd08a639fd32264550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPEED: 6
+  targets: []
+  shipTarget: {fileID: 0}
+  currentTimer: 0
+  maxTimer: 3
 --- !u!1 &3971767518326277979
 GameObject:
   m_ObjectHideFlags: 0
@@ -32485,7 +32485,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c15b1dd674894416299a9b145ea98c47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f12ca5b41e70c4422b72879bff7d93a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

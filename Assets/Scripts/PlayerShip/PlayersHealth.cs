@@ -11,8 +11,18 @@ public class PlayersHealth : MonoBehaviour
     [SerializeField] Transform destructibles;
     [SerializeField] Transform boat;
 
+    
+
+    public Transform cam;
+
     public GameObject fireBack;
     public GameObject fireFront;
+    public Transform playerSpawnPoint;
+    public Transform player;
+    public Image fadeToBlackImage;
+
+    public Transform currentSprite;
+    public Sprite shipWreckSprite;
 
     public Slider slider;
     public Text healthCount;
@@ -23,7 +33,22 @@ public class PlayersHealth : MonoBehaviour
     public float currentHealth;
 
     private bool isDead;
+    private bool startFading;
+    private bool hasInstantiated;
+    
 
+    private void Awake()
+    {
+        GameObject hs = GameObject.Find("Health Slider");
+        GameObject ht = GameObject.Find("Health Count");
+        GameObject ftb = GameObject.Find("FadeToBlack Canvas");
+        playerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
+
+        fadeToBlackImage = ftb.GetComponentInChildren<Image>();
+        slider = hs.GetComponent<Slider>();
+        healthCount = ht.GetComponent<Text>();
+        cam = GameObject.Find("Main Camera").transform;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +57,7 @@ public class PlayersHealth : MonoBehaviour
         navmesh = GetComponent<NavMeshAgent>();
         fireBack.SetActive(false);
         fireFront.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -62,6 +88,8 @@ public class PlayersHealth : MonoBehaviour
         {
 
         }
+
+        
     }
 
     private void LateUpdate()
@@ -81,9 +109,48 @@ public class PlayersHealth : MonoBehaviour
             SphereCollider sc = child.gameObject.AddComponent<SphereCollider>();
             sc.radius = 5;
 
-            Destroy(child.gameObject, 2);
+            Destroy(child.gameObject, 2.5f);
+            
 
+            
+
+            
 
         }
+        PrepareNextPlayer();
+        
     }
+
+    void PrepareNextPlayer()
+    {
+        
+        navmesh.enabled = false;
+        GetComponent<FiringCannons>().enabled = false;
+        GetComponent<CollectingResources>().enabled = false;
+        GetComponent<ClickToSteer>().enabled = false;
+        GetComponent<Rigidbody>().detectCollisions = false;
+        currentSprite.GetComponent<SpriteRenderer>().sprite = shipWreckSprite;
+        startFading = true;
+        FadeToBlack();
+        Invoke("ChangeTag", 5);
+        
+        
+    }
+
+    void ChangeTag()
+    {
+        this.transform.tag = "ShipWreck";
+        FindObjectOfType<PlayerSpawnIn>().SpawnNextPlayer();
+    }
+
+    void FadeToBlack()
+    {
+        fadeToBlackImage.color = Color.black;
+        fadeToBlackImage.canvasRenderer.SetAlpha(0.0f);
+        fadeToBlackImage.CrossFadeAlpha(1.0f, 3, false);
+        
+
+    }
+
+    
 }

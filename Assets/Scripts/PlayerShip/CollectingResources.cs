@@ -7,6 +7,7 @@ public class CollectingResources : MonoBehaviour
 {
 
     AudioSource audioSource;
+    PlayersHealth playersHealth;
 
     public AudioClip collectGoldChest;
     public AudioClip collectHealth;
@@ -23,9 +24,8 @@ public class CollectingResources : MonoBehaviour
     public int goldBarrelGold;
     public int cannonBallBarrelBall;
 
-    public float playersHealth;
-    public float playersMaxHealth = 100f;
-    public Text healthText;
+    
+    
 
     public float playersNotoriety;
     public float playersMaxNotoriety = 100f;
@@ -36,37 +36,37 @@ public class CollectingResources : MonoBehaviour
     public Text cannonBallText;
 
     public Slider goldSlider;
-    public Slider healthSlider;
+   
     public Slider NotorietySlider;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         GameObject gT = GameObject.Find("Gold Count");
-        GameObject hT = GameObject.Find("Health Count");
+        
         GameObject nT = GameObject.Find("Notoriety Count");
         GameObject bT = GameObject.Find("Ball Count");
         GameObject gS = GameObject.Find("Gold Slider");
-        GameObject hS = GameObject.Find("Health Slider");
+        
         GameObject nS = GameObject.Find("Notoriety Slider");
         
 
         goldText = gT.GetComponent<Text>();
-        healthText = hT.GetComponent<Text>();
+        
         notorietyText = nT.GetComponent<Text>();
         cannonBallText = bT.GetComponent<Text>();
         goldSlider = gS.GetComponent<Slider>();
-        healthSlider = hS.GetComponent<Slider>();
+        
         NotorietySlider = nS.GetComponent<Slider>();
 
     }
     private void Start()
     {
         playersMaxGold = goldSlider.maxValue;
-        playersMaxHealth = healthSlider.maxValue;
+        playersHealth = GetComponent<PlayersHealth>();
         playerscannonBalls = playersMaxBalls;
         cannonBallText.text = playersMaxBalls.ToString();
-        playersHealth = playersMaxHealth;
+        
 
         // Create Player Instances
 
@@ -83,8 +83,7 @@ public class CollectingResources : MonoBehaviour
         NotorietySlider.value = playersNotoriety;
         notorietyText.text = Mathf.RoundToInt(playersNotoriety).ToString();
 
-        healthSlider.value = playersHealth;
-        healthText.text = Mathf.RoundToInt(playersHealth).ToString() + "%";
+        
 
 
         playersNotoriety = playersGold / 100f; // make it 100 for the game
@@ -102,10 +101,7 @@ public class CollectingResources : MonoBehaviour
             playerscannonBalls = playersMaxBalls;
         }
 
-        if (playersHealth > playersMaxHealth)
-        {
-            playersHealth = playersMaxHealth;
-        }
+       
     }
 
     
@@ -114,10 +110,10 @@ public class CollectingResources : MonoBehaviour
 
 
 
-        if (other.transform.tag == "Chest")
+        if (other.transform.tag == "PlayersLoot")
         {
-            playersGold += goldBarrelGold;
             
+            playersGold = other.gameObject.GetComponent<playersLootChests>().amountInChest;
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
             audioSource.PlayOneShot(collectGoldChest, 0.4f);
@@ -134,7 +130,7 @@ public class CollectingResources : MonoBehaviour
         }
         else if (other.transform.tag == "HealthBarrel")
         {
-            playersHealth += healthBarrelHealth;
+            playersHealth.currentHealth += healthBarrelHealth;
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
             audioSource.PlayOneShot(collectHealth, 0.4f);

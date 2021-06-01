@@ -2734,7 +2734,7 @@ GameObject:
   - component: {fileID: 6007605554208826755}
   - component: {fileID: 2230366034851114712}
   m_Layer: 2
-  m_Name: LVL1Enemy
+  m_Name: DemoShip
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2863,7 +2863,7 @@ MonoBehaviour:
   death: {fileID: 8300000, guid: ebf60ee5feb6f40ee9638612af07668d, type: 3}
   fireBack: {fileID: 8272199533841963775}
   fireFront: {fileID: 564820843461549367}
-  maxHealth: 50
+  maxHealth: 20
   currentHealth: 0
   shipSize: 1
   lootFromShip: {fileID: 0}
@@ -2991,7 +2991,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086474926f56f4dd08a639fd32264550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SPEED: 3
+  range: 0
+  cube: {fileID: 3260124130174597196, guid: 9b59f0947704047498a31af10d83ab5e, type: 3}
+  newWaypoint: {x: 0, y: 0, z: 0}
+  hasSetWaypoint: 0
+  isPatrolling: 0
+  SPEED: 1
   targets: []
   shipTarget: {fileID: 0}
   currentTimer: 0

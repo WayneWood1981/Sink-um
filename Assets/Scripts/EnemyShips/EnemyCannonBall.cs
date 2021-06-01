@@ -32,16 +32,12 @@ public class EnemyCannonBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 1);
+        Destroy(gameObject, 2.5f);
 
         audioSource.PlayOneShot(cannonFire[Random.Range(0, cannonFire.Length)], 0.1f);
     }
 
-    private void Update()
-    {
-        
-    }
-
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Player")
@@ -76,7 +72,7 @@ public class EnemyCannonBall : MonoBehaviour
 
             if (audioSource)
             {
-                audioSource.volume = 20;
+                
                 audioSource.PlayOneShot(splashes[Random.Range(0, splashes.Length)], 0.05f);
             }
         }

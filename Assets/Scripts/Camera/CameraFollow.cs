@@ -35,11 +35,11 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playersShip != null)
-        {
-            playersShip = GameObject.FindGameObjectWithTag("Player").transform;
-            transform.position = playersShip.position + offset;
-        }
+        
+        
+        playersShip = GameObject.FindGameObjectWithTag("Player").transform;
+        transform.position = playersShip.position + offset;
+        
         
 
         if (Input.GetKeyDown(KeyCode.Z))

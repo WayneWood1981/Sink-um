@@ -5,7 +5,7 @@ public class CreateLootFromShip : MonoBehaviour
 {
     public Transform[] loot;
 
-    
+    public Transform chest;
 
     public float  speed;
 
@@ -38,6 +38,12 @@ public class CreateLootFromShip : MonoBehaviour
         
 
     }
+
+    public void createPlayersLoot(Transform wherePlayerSunk)
+    {
+        Transform playersDroppedLoot = Instantiate(chest, wherePlayerSunk.position, wherePlayerSunk.rotation);
+    }
+
 
     
 }

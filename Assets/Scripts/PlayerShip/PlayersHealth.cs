@@ -10,7 +10,10 @@ public class PlayersHealth : MonoBehaviour
 
     [SerializeField] Transform destructibles;
     [SerializeField] Transform boat;
+    [SerializeField] GameObject playersLoot;
 
+    public CollectingResources playersResources;
+    public EnemyChase enemyChase;
     
 
     public Transform cam;
@@ -57,36 +60,46 @@ public class PlayersHealth : MonoBehaviour
         navmesh = GetComponent<NavMeshAgent>();
         fireBack.SetActive(false);
         fireFront.SetActive(false);
-        
+        enemyChase = FindObjectOfType<EnemyChase>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
-        if (currentHealth <= 0)
+        slider.value = currentHealth;
+        healthCount.text = currentHealth.ToString();
+
+        
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if (currentHealth > 70)
+        {
+            fireBack.SetActive(false);
+            fireFront.SetActive(false);
+        }else if (currentHealth <= 70 && currentHealth > 30)
+        {
+            fireBack.SetActive(true);
+            fireFront.SetActive(false);
+
+        }
+        else if (currentHealth <= 30 && currentHealth > 0)
+        {
+            fireBack.SetActive(true);
+            fireFront.SetActive(true);
+        }else if (currentHealth <= 0)
         {
             if (isDead == false)
             {
+                currentHealth = 0;
                 navmesh.speed = 0.0f;
                 navmesh.updateRotation = false;
                 navmesh.isStopped = true;
                 Die();
             }
-        }else if (currentHealth <= 70)
-        {
-            fireBack.SetActive(true);
-        }else if (currentHealth <= 30)
-        {
-            fireFront.SetActive(true);
-        }else if (currentHealth > 70)
-        {
-            fireFront.SetActive(false);
-            fireFront.SetActive(false);
-        }
-        {
-
         }
 
         
@@ -94,8 +107,7 @@ public class PlayersHealth : MonoBehaviour
 
     private void LateUpdate()
     {
-        slider.value = currentHealth;
-        healthCount.text = currentHealth.ToString();
+        
     }
 
     private void Die()
@@ -110,7 +122,7 @@ public class PlayersHealth : MonoBehaviour
             sc.radius = 5;
 
             Destroy(child.gameObject, 2.5f);
-            
+
 
             
 
@@ -118,7 +130,12 @@ public class PlayersHealth : MonoBehaviour
 
         }
         PrepareNextPlayer();
+        if(playersResources.playersGold > 0)
+        {
+            FindObjectOfType<CreateLootFromShip>().createPlayersLoot(this.transform);
+        }
         
+        //enemyChase.hasRestoredTargetList = false;
     }
 
     void PrepareNextPlayer()
@@ -132,7 +149,7 @@ public class PlayersHealth : MonoBehaviour
         currentSprite.GetComponent<SpriteRenderer>().sprite = shipWreckSprite;
         startFading = true;
         FadeToBlack();
-        Invoke("ChangeTag", 5);
+        Invoke("ChangeTag", 2);
         
         
     }
@@ -140,7 +157,18 @@ public class PlayersHealth : MonoBehaviour
     void ChangeTag()
     {
         this.transform.tag = "ShipWreck";
+        this.transform.name = "ShipWreck";
+        Destroy(this.transform.Find("EnemyTarget1").gameObject);
+        Destroy(this.transform.Find("EnemyTarget2").gameObject);
+        Destroy(this.transform.Find("EnemyTarget3").gameObject);
+        Destroy(this.transform.Find("EnemyTarget4").gameObject);
+        Destroy(this.transform.Find("EnemyTarget5").gameObject);
+        Destroy(this.transform.Find("EnemyTarget6").gameObject);
+        Destroy(this.transform.Find("EnemyTarget7").gameObject);
+        Destroy(this.transform.Find("EnemyTarget8").gameObject);
         FindObjectOfType<PlayerSpawnIn>().SpawnNextPlayer();
+        this.enabled = false;
+        
     }
 
     void FadeToBlack()

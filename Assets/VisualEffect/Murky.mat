@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WaterBoss
-  m_Shader: {fileID: -6465566751694194690, guid: ddf43bb83a851451586fef6a99af0fb2, type: 3}
+  m_Name: Murky
+  m_Shader: {fileID: -6465566751694194690, guid: e2c86a4a46d2f4cbe9331f3c6c90c14c, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,10 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_202a8484255c440894bedf4f747652db: 5
-    - Vector1_223f097d3e4c42d3b74131db80a61439: 1
+    - Vector1_223f097d3e4c42d3b74131db80a61439: 0.9
     - Vector1_5f5e20f8e49f42b883cd533ebf6479a0: 1
     - Vector1_6f48a685930b4ef291ae88e06571452a: 7
     m_Colors:
-    - Color_0d03e6a94aa14383929019c01459a27a: {r: 0.2735849, g: 0.0038714774, b: 0.009264584, a: 0}
-    - Color_c24dd6bd1c64427aba2f3a8c29642714: {r: 0, g: 0, b: 0, a: 1}
+    - Color_0d03e6a94aa14383929019c01459a27a: {r: 2.670157, g: 0, b: 0, a: 0}
+    - Color_c24dd6bd1c64427aba2f3a8c29642714: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

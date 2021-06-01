@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &9033558523387458361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600684563122722315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7e3bed414d14abaa8c6e69d51fcc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8470539610110369435
 GameObject:
   m_ObjectHideFlags: 0
@@ -48600,6 +48612,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086474926f56f4dd08a639fd32264550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 10
+  cube: {fileID: 3260124130174597196, guid: 9b59f0947704047498a31af10d83ab5e, type: 3}
+  newWaypoint: {x: 0, y: 0, z: 0}
+  hasSetWaypoint: 0
+  isPatrolling: 0
   SPEED: 5
   targets: []
   shipTarget: {fileID: 0}
@@ -48954,6 +48971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4756c7c7f625c4900992dad846a525e1, type: 3}
+--- !u!1 &3600684563122722315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4932942897296909688, guid: 4756c7c7f625c4900992dad846a525e1, type: 3}
+  m_PrefabInstance: {fileID: 8470539610295022451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3583576259299369499 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4915130863216054632, guid: 4756c7c7f625c4900992dad846a525e1, type: 3}

@@ -7923,6 +7923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086474926f56f4dd08a639fd32264550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 10
+  cube: {fileID: 3260124130174597196, guid: 9b59f0947704047498a31af10d83ab5e, type: 3}
+  newWaypoint: {x: 0, y: 0, z: 0}
+  hasSetWaypoint: 0
+  isPatrolling: 0
   SPEED: 4
   targets: []
   shipTarget: {fileID: 0}
@@ -10119,6 +10124,18 @@ Transform:
   m_Father: {fileID: 521558699524269706}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9066456338954356586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3176363730612555807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7e3bed414d14abaa8c6e69d51fcc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3888986591368142501
 GameObject:
   m_ObjectHideFlags: 0
@@ -48954,6 +48971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89de6f5b2d77f44d28df0a9a29a225da, type: 3}
+--- !u!1 &3176363730612555807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6878492906082660833, guid: 89de6f5b2d77f44d28df0a9a29a225da, type: 3}
+  m_PrefabInstance: {fileID: 8314178318366761470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2061169107527342128 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8069143490714171854, guid: 89de6f5b2d77f44d28df0a9a29a225da, type: 3}

@@ -15,10 +15,20 @@ public class EnemyDetection : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-
+            
+            enemyMovement.targets.Clear();
+            enemyMovement.PopulateTheListWithTargets();
             enemyMovement.shipTarget = enemyMovement.getTargetDistances(enemyMovement.targets);
             enemyMovement.isPatrolling = false;
             //enemyMovement.shipTarget = other.transform;
         }
+    }
+
+    public void TrackPlayer()
+    {
+        enemyMovement.targets.Clear();
+        enemyMovement.PopulateTheListWithTargets();
+        enemyMovement.shipTarget = enemyMovement.getTargetDistances(enemyMovement.targets);
+        enemyMovement.isPatrolling = false;
     }
 }

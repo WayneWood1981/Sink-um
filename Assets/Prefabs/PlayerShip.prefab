@@ -1107,12 +1107,9 @@ MonoBehaviour:
   playersGold: 0
   playersMaxGold: 50000
   goldText: {fileID: 0}
-  healthBarrelHealth: 0
+  healthBarrelHealth: 25
   goldBarrelGold: 0
-  cannonBallBarrelBall: 0
-  playersHealth: 0
-  playersMaxHealth: 100
-  healthText: {fileID: 0}
+  cannonBallBarrelBall: 10
   playersNotoriety: 0
   playersMaxNotoriety: 100
   notorietyText: {fileID: 0}
@@ -1120,7 +1117,6 @@ MonoBehaviour:
   playersMaxBalls: 50
   cannonBallText: {fileID: 0}
   goldSlider: {fileID: 0}
-  healthSlider: {fileID: 0}
   NotorietySlider: {fileID: 0}
 --- !u!114 &8672097152828462028
 MonoBehaviour:
@@ -1136,6 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destructibles: {fileID: 8673174670688104712}
   boat: {fileID: 8668683331155358010}
+  playersLoot: {fileID: 110828, guid: cae8e749c8d3eb44da3bdd1e6c9f42fd, type: 3}
   cam: {fileID: 0}
   fireBack: {fileID: 7449118295844051868}
   fireFront: {fileID: 811408948995090412}
@@ -1146,7 +1143,7 @@ MonoBehaviour:
   shipWreckSprite: {fileID: 21300000, guid: eac51da25a7b24174a03412909fd5042, type: 3}
   slider: {fileID: 0}
   healthCount: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 100
   currentHealth: 0
 --- !u!114 &1539993923
 MonoBehaviour:
@@ -1163,7 +1160,7 @@ MonoBehaviour:
   canvasGameObject: {fileID: 9072718047968785151, guid: b310428ca19f345648754d84807236ca, type: 3}
   mapOpen: {fileID: 8300000, guid: c8c02e23bd8fdaa44b68ba300d26a4aa, type: 3}
   mapClose: {fileID: 8300000, guid: eadfa25f6b899324eb7153cf8d0a2db8, type: 3}
-  SPEEDISHERE: 4
+  SPEEDISHERE: 20
 --- !u!54 &1539993925
 Rigidbody:
   m_ObjectHideFlags: 0

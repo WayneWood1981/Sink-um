@@ -1,31 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Use physics raycast hit from mouse click 
+// to set agent destination
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyChase : MonoBehaviour
+public class EnemyAlerted : MonoBehaviour
 {
 
-    public float range;
 
-    public Transform cube;
-
-    public Vector3 newWaypoint;
-
-    public bool hasSetWaypoint;
-
-    public bool isPatrolling;
-
-    public bool isInstantiated;
+    
 
     public float SPEED;
 
-    NavMeshAgent m_Agent;
+    NavMeshAgent enemAgent;
 
     NavMeshPath m_Path;
-
-    
 
     Health health;
 
@@ -34,11 +24,11 @@ public class EnemyChase : MonoBehaviour
     public List<Transform> targets = new List<Transform>();
 
     Vector3 AgentPosition;
-    
+
     Vector3 destination =
         new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
     public Transform shipTarget;
-    
+    RaycastHit m_HitInfo = new RaycastHit();
 
     public float currentTimer;
     public float maxTimer = 3f;
@@ -59,82 +49,53 @@ public class EnemyChase : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        if (gameObject.name == "DemoShip")
-        {
-            isPatrolling = false;
-            shipTarget = null;
-        }
-        else
-        {
-            isPatrolling = true;
-        }
-        
-    }
-
     void Start()
     {
-        m_Agent = GetComponent<NavMeshAgent>();
-        m_Agent.isStopped = true;
+        enemAgent = GetComponent<NavMeshAgent>();
+        enemAgent.isStopped = true;
         m_Path = new NavMeshPath();
         health = GetComponent<Health>();
         
         PopulateTheListWithTargets();
-
-        
     }
 
     void Update()
     {
+
+        
+
         SetAgentPosition();
 
-        if (isPatrolling)
-        {
-            
-            Wander();
-            //RandomNavSphere(transform.position, range);
-        }
-        
-        
         currentTimer += 1 * Time.deltaTime;
 
-        if (health.isDead == false)
+        if (shipTarget != null && health.isDead == false)
         {
             if (currentTimer >= maxTimer)
             {
-               if (shipTarget != null)
-                {
-                    m_Agent.destination = shipTarget.position;
-                    m_Path = new NavMeshPath();
+
+                //m_Agent.destination = m_HitInfo.point;
+                m_Path = new NavMeshPath();
+                
+                enemAgent.CalculatePath(shipTarget.position,
+                                         m_Path);
+                pathIter = 1;
+                enemAgent.isStopped = false;
 
 
-                    m_Agent.CalculatePath(shipTarget.position,
-                                          m_Path);
-                    pathIter = 1;
-                    m_Agent.isStopped = false;
-                    currentTimer = 0;
-                }
-                
-                
+                currentTimer = 0;
             }
         }
-
         
-        
-
         if (m_Path.corners == null || m_Path.corners.Length == 0)
             return;
 
 
         if (pathIter >= m_Path.corners.Length)
         {
-            if (!health.isDead)
-            {
-                destination = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
-                m_Agent.isStopped = true;
-                return;
-            }
+            if(!health.isDead)
+            destination = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
+            enemAgent.isStopped = true;
+            return;
         }
         else
         {
@@ -156,49 +117,31 @@ public class EnemyChase : MonoBehaviour
             float distance =
                 Vector3.Distance(AgentPosition, destination);
 
-            if (distance > m_Agent.radius + 0.1)
+            if (distance > enemAgent.radius + 0.1)
             {
-                
                 Vector3 movement =
                     transform.forward * Time.deltaTime * SPEED;
+
+                //if not dead
                 if (!health.isDead)
-                m_Agent.Move(movement);
+                {
+                    enemAgent.Move(movement);
+                }
+                
             }
             else
             {
-                
                 ++pathIter;
                 if (pathIter >= m_Path.corners.Length)
                 {
-                    destination = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
-                    m_Agent.isStopped = true;
+                    //here!!
+                    //destination = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
 
-                    //IF WANDERING
-
-                    hasSetWaypoint = false;
                     
+                    enemAgent.isStopped = true;
                 }
             }
         }
-    }
-
-    public Transform getTargetDistances(List<Transform> targets)
-    {
-        Transform bestTarget = null;
-        float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
-        foreach (Transform potentialTarget in targets)
-        {
-            Vector3 directionToTarget = potentialTarget.position - currentPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget;
-                isPatrolling = false;
-            }
-        }
-        return bestTarget;
     }
 
     void SetAgentPosition()
@@ -212,39 +155,27 @@ public class EnemyChase : MonoBehaviour
         }
     }
 
-    private void Wander()
+    public Transform getTargetDistances(List<Transform> possTargets)
     {
-        if (!hasSetWaypoint)
+        float closestDistance = Mathf.Infinity;
+
+        for (int i = 0; i < possTargets.Count; i++)
         {
-            if (range != 0)
+            float distance = Vector3.Distance(targets[i].transform.position, transform.position);
+
+            if (distance < closestDistance)
             {
-                range = Random.Range(10, 30);
+                closestDistance = distance;
+                
+                //shipTarget = targets[i];
+
+                return targets[i];
             }
-            
-            float x = Random.Range(transform.position.x - range, transform.position.x + range);
-            float y = 0.43f;
-            float z = Random.Range(transform.position.z - range, transform.position.z + range);
-
-            newWaypoint = new Vector3(x, y, z);
-
-            Transform newCube = Instantiate(cube, newWaypoint, Quaternion.identity);
-
-            
-
-            shipTarget = newCube;
-
-            hasSetWaypoint = true;
-
-            Destroy(newCube.gameObject, 20);
-            
         }
-
-        
+        return null;
     }
 
-    
-
-    public void PopulateTheListWithTargets()
+    void PopulateTheListWithTargets()
     {
         Transform a = GameObject.Find("EnemyTarget1").transform;
         Transform b = GameObject.Find("EnemyTarget2").transform;
@@ -266,7 +197,7 @@ public class EnemyChase : MonoBehaviour
         targets.Add(g);
         targets.Add(h);
 
-
+        
 
 
         // Cant get this to work!!

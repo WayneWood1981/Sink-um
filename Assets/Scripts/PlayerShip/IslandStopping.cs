@@ -7,13 +7,20 @@ using UnityEngine.AI;
 public class IslandStopping : MonoBehaviour
 {
     [SerializeField] ParticleSystem pS;
+    PlayerSpawnIn gameBrain;
 
     public AudioSource audioSource;
     public AudioClip[] digginSounds;
     public AudioClip chestOpen;
     public AudioClip goldCoins;
+    public AudioClip squark;
+
     private bool playDigging;
     private bool playChestOpen;
+    private bool displayWarning;
+    private bool displayHoldSpace;
+
+    bool displayDigText;
 
     public CollectingResources playersCollection;
     
@@ -35,9 +42,10 @@ public class IslandStopping : MonoBehaviour
 
     private void Start()
     {
-        islandsStashOfGold = Random.Range(500, 1000);
+        islandsStashOfGold = 1000f;
         
         playersCollection = FindObjectOfType<CollectingResources>();
+        gameBrain = GameObject.Find("GameBrain").GetComponentInChildren<PlayerSpawnIn>();
 
         pS = GetComponentInChildren<ParticleSystem>();
         pS.Stop();
@@ -72,6 +80,7 @@ public class IslandStopping : MonoBehaviour
                         {
                             audioSource.PlayOneShot(chestOpen, 0.5f);
                             audioSource.PlayOneShot(goldCoins, 0.25f);
+                            
                             playChestOpen = true;
                         }
                         
@@ -82,19 +91,53 @@ public class IslandStopping : MonoBehaviour
                         
                         digging.treasureChest.SetActive(false);
                         digging.openTreasureChest.SetActive(true);
-                    }
+                        displayWarning = true;
 
+                    }
+                    if (gameBrain.timesSpawned < 2)
+                    {
+                        if (!displayHoldSpace)
+                        {
+                            audioSource.PlayOneShot(squark, 0.5f);
+                            displayHoldSpace = true;
+                        }
+                        
+                        
+                        
+                        
+                        gameBrain.instructionsText.text = "HOLD SPACE\n\nNow we will start to steal ol' Sealeg's Gold\n\n" +
+                            "Legend states that he will return from the dead to hunt down the Pirate that stole his gold!\n\n" +
+                            "After each chest that we find, another destination is revealed on the MAP \'M\'.";
+                    }
+                        
 
                 }
                 
 
             }
-            
 
-            
+
+
 
         }
+        
+        if (displayWarning)
+        {
+            if (gameBrain.timesSpawned < 2)
+            {
 
+                
+                audioSource.PlayOneShot(squark, 0.5f);
+                
+
+                gameBrain.instructionsText.text = "WARNING!\n\nThe more of his gold on your ship the more of his" +
+                                " undead fleet he will send after you to claim it back\n\nThe skull is your Reputation. " +
+                                "The higher it is the more ships will be after our stolen gold\n\n" +
+                                "Sail EAST, I see an Enemy ship!";
+                displayWarning = false;
+            }
+        }
+                
         
     }
 
@@ -111,6 +154,17 @@ public class IslandStopping : MonoBehaviour
         {
             
             isOnIsland = true;
+            if (gameBrain.timesSpawned < 2)
+            {
+                gameBrain.instructCanvas.SetActive(true);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(squark, 0.5f);
+                }
+                
+                gameBrain.instructionsText.text = "LAND AHOY!\n\n\nGreat we're here...\nEach island has a JETI, find this islands JETI and stop next to it.\n\n\n" +
+                    "Once next to the Jeti, hold SPACE.";
+            }
             
 
         }
@@ -119,9 +173,19 @@ public class IslandStopping : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-
+            displayWarning = false;
             isOnIsland = false;
-
+            if (gameBrain.timesSpawned < 2)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(squark, 0.5f);
+                }
+                gameBrain.instructionsText.text = "STOP!!... they're just up ahead!\n\n" +
+                    "Use your CROWS NEST \'Z\' to take a better look.\nRemember to press it again when in combat.\n\n" +
+                    "Use \'A\' & \'D\' to fire from each side of the ship.\n\n" +
+                    "If they sink us, we will have to grab another boat an sail back for our GOLD!";
+            }
 
         }
     }

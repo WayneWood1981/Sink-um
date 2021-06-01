@@ -12370,7 +12370,7 @@ GameObject:
   - component: {fileID: 1976560614515727292}
   m_Layer: 2
   m_Name: Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12626,6 +12626,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086474926f56f4dd08a639fd32264550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 10
+  cube: {fileID: 3260124130174597196, guid: 9b59f0947704047498a31af10d83ab5e, type: 3}
+  newWaypoint: {x: 0, y: 0, z: 0}
+  hasSetWaypoint: 0
+  isPatrolling: 0
+  isInstantiated: 0
   SPEED: 6
   targets: []
   shipTarget: {fileID: 0}
@@ -48849,6 +48855,18 @@ MonoBehaviour:
   cannonBall: {fileID: 8319898899511258110, guid: 537a09bb37b194b8fadb17d9beee91ca, type: 3}
   impulseForce: 800
   cannonCoolDown: 0
+--- !u!114 &4400280886085722280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330955877459608618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7e3bed414d14abaa8c6e69d51fcc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3971767517923895965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48954,6 +48972,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aed943c062834898aee2f2be7408e26, type: 3}
+--- !u!1 &4330955877459608618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 793804442118336183, guid: 1aed943c062834898aee2f2be7408e26, type: 3}
+  m_PrefabInstance: {fileID: 3971767517923895965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6799597637271427152 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7585059604484059853, guid: 1aed943c062834898aee2f2be7408e26, type: 3}

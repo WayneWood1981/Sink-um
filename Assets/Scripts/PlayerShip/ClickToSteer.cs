@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class ClickToSteer : MonoBehaviour
 {
-    
+
 
     public GameObject canvasGameObject;
 
@@ -25,6 +25,7 @@ public class ClickToSteer : MonoBehaviour
 
     int pathIter = 1;
     bool canvasToggled;
+    bool hasInstantiatedMapAlready;
 
     Vector3 AgentPosition;
 
@@ -49,19 +50,19 @@ public class ClickToSteer : MonoBehaviour
 
     private void Awake()
     {
-        
-        
-        
+
+
+
     }
 
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
-       // m_Agent.isStopped = true;
+        // m_Agent.isStopped = true;
         m_Path = new NavMeshPath();
-        
+
         audioSource = GetComponent<AudioSource>();
-        
+        hasInstantiatedMapAlready = false;
     }
 
 
@@ -69,33 +70,44 @@ public class ClickToSteer : MonoBehaviour
     void Update()
     {
 
-        
+
 
         if (Input.GetKeyDown(KeyCode.M))
         {
 
             if (!canvasToggled)
             {
-                if (!GameObject.Find("MapCanvasClone"))
+
+                if (hasInstantiatedMapAlready == false)
                 {
-                    Instantiate(canvasGameObject);
+                    map = Instantiate(canvasGameObject);
+                    audioSource.PlayOneShot(mapOpen, 0.4f);
+                    canvasToggled = true;
+                    hasInstantiatedMapAlready = true;
+                    
                 }
                 else
                 {
-                    GameObject map = GameObject.Find("MapCanvasClone");
+
+                    
                     map.SetActive(true);
+                   
+                   
+
+                    audioSource.PlayOneShot(mapOpen, 0.4f);
+                    canvasToggled = true;
                 }
-                
-                audioSource.PlayOneShot(mapOpen, 0.4f);
-                canvasToggled = true;
+
+
+
 
             }
             else
             {
-                GameObject map = GameObject.FindGameObjectWithTag("Map");
                 map.SetActive(false);
                 audioSource.PlayOneShot(mapClose, 0.4f);
                 canvasToggled = false;
+               
             }
 
 

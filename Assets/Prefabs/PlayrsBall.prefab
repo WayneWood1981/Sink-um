@@ -271,7 +271,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3ac42eb61c94da94294e06b6da62cda8, type: 3}
   - {fileID: 8300000, guid: a060a3a599c91cb4284d469f1527eef7, type: 3}
   - {fileID: 8300000, guid: 6f2d05b10161cb4438e3e9a738c59111, type: 3}
-  splash: {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
+  splash: {fileID: 100008, guid: 84b9404521ba94049b96da31e88db549, type: 3}
 --- !u!1001 &324694113336852096
 PrefabInstance:
   m_ObjectHideFlags: 0

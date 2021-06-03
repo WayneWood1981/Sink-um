@@ -51,11 +51,11 @@ public class EnemySpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-        
 
-        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 2 && playersResources.playersNotoriety <= playersResources.playersMaxNotoriety / 100 * 2.1)
+        playersResources = FindObjectOfType<CollectingResources>();
+
+        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 25 && playersResources.playersNotoriety <= playersResources.playersMaxNotoriety / 100 * 49)
         {
             if (releaseTheEnemies == false)
             {
@@ -75,11 +75,11 @@ public class EnemySpawning : MonoBehaviour
             }
         }
 
-        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 3 && playersResources.playersNotoriety <= playersResources.playersMaxNotoriety / 100 * 3.1)
+        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 50 && playersResources.playersNotoriety <= playersResources.playersMaxNotoriety / 100 * 74)
         {
             if (releaseTheEnemiesAgain == false)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     GameObject newEnemy = Instantiate(EnemyLVL2, spawnPoints[i].position, Quaternion.identity);
 
@@ -94,7 +94,7 @@ public class EnemySpawning : MonoBehaviour
             }
         }
 
-        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 4)
+        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 75 && playersResources.playersNotoriety <= playersResources.playersMaxNotoriety / 100 * 99)
         {
             if (releaseTheEnemiesAgainAgain == false)
             {
@@ -112,7 +112,7 @@ public class EnemySpawning : MonoBehaviour
             }
         }
 
-        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety / 100 * 5)
+        if (playersResources.playersNotoriety >= playersResources.playersMaxNotoriety)
         {
             if (releaseTheEnemiesAgainAgainAgain == false)
             {

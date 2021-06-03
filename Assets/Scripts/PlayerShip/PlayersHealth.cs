@@ -46,7 +46,7 @@ public class PlayersHealth : MonoBehaviour
         GameObject ht = GameObject.Find("Health Count");
         GameObject ftb = GameObject.Find("FadeToBlack Canvas");
         playerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
-
+        playersResources = GetComponent<CollectingResources>();
         fadeToBlackImage = ftb.GetComponentInChildren<Image>();
         slider = hs.GetComponent<Slider>();
         healthCount = ht.GetComponent<Text>();
@@ -130,17 +130,17 @@ public class PlayersHealth : MonoBehaviour
 
         }
         PrepareNextPlayer();
-        if(playersResources.playersGold > 0)
-        {
-            FindObjectOfType<CreateLootFromShip>().createPlayersLoot(this.transform);
-        }
+        
         
         //enemyChase.hasRestoredTargetList = false;
     }
 
     void PrepareNextPlayer()
     {
-        
+        if (playersResources.playersGold > 0)
+        {
+            FindObjectOfType<CreateLootFromShip>().createPlayersLoot(this.transform);
+        }
         navmesh.enabled = false;
         GetComponent<FiringCannons>().enabled = false;
         GetComponent<CollectingResources>().enabled = false;

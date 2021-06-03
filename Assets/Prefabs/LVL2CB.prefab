@@ -175,7 +175,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f783219c18e05e41894ade14e46c5ce, type: 3}
   - {fileID: 8300000, guid: 3ac42eb61c94da94294e06b6da62cda8, type: 3}
   - {fileID: 8300000, guid: a060a3a599c91cb4284d469f1527eef7, type: 3}
-  splash: {fileID: 1687118924408352, guid: 77c69ec12208c4c4380d15e30b6f8f68, type: 3}
+  splash: {fileID: 100008, guid: 84b9404521ba94049b96da31e88db549, type: 3}
 --- !u!82 &-5785026553386801336
 AudioSource:
   m_ObjectHideFlags: 0

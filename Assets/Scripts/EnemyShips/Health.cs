@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
 
     NavMeshAgent navmesh;
     AudioSource audioSource;
-    EnemyMovement enemyMovement;
+    
 
     public float maxHealth = 100;
     public float currentHealth;
@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         navmesh = GetComponent<NavMeshAgent>();
         lootFromShip = FindObjectOfType<CreateLootFromShip>();
-        enemyMovement = GetComponent<EnemyMovement>();
+        
         audioSource = GetComponent<AudioSource>();
 
         healthSlider.maxValue = maxHealth;

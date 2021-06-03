@@ -12368,6 +12368,7 @@ GameObject:
   - component: {fileID: 3971767518256926384}
   - component: {fileID: 3971767518256926387}
   - component: {fileID: 1976560614515727292}
+  - component: {fileID: 3468509899597415331}
   m_Layer: 2
   m_Name: Boss
   m_TagString: Boss
@@ -12636,7 +12637,20 @@ MonoBehaviour:
   targets: []
   shipTarget: {fileID: 0}
   currentTimer: 0
-  maxTimer: 3
+  maxTimer: 1
+--- !u!114 &3468509899597415331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971767518256926386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e441c34a01974b819ba627502d4b6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverCanvas: {fileID: 1941264817737339588, guid: ab658ffea934c45dc90bc933a47054c8, type: 3}
 --- !u!1 &3971767518326277979
 GameObject:
   m_ObjectHideFlags: 0
@@ -32446,7 +32460,7 @@ Transform:
   m_GameObject: {fileID: 3971767518680819586}
   m_LocalRotation: {x: 0.5121799, y: -0.49999103, z: 0.49948055, w: 0.4880572}
   m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 161.04543, y: 161.04543, z: 161.04543}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children: []
   m_Father: {fileID: 3971767518256926392}
   m_RootOrder: 10
@@ -32491,7 +32505,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f12ca5b41e70c4422b72879bff7d93a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ada044dc789c04f299e5c807bee2b6af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

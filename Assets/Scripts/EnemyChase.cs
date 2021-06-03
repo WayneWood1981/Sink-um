@@ -95,7 +95,11 @@ public class EnemyChase : MonoBehaviour
             Wander();
             //RandomNavSphere(transform.position, range);
         }
-        
+
+        if (shipTarget == null)
+        {
+            isPatrolling = true;
+        }
         
         currentTimer += 1 * Time.deltaTime;
 

@@ -113,7 +113,7 @@ public class CollectingResources : MonoBehaviour
         if (other.transform.tag == "PlayersLoot")
         {
             
-            playersGold = other.gameObject.GetComponent<playersLootChests>().amountInChest;
+            playersGold += other.gameObject.GetComponent<playersLootChests>().amountInChest;
             other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             other.gameObject.GetComponent<Rigidbody>().detectCollisions = false;
             audioSource.PlayOneShot(collectGoldChest, 0.4f);
